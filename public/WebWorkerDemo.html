@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Worker Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>So, you want to know what pi is</h1>
+How long are you willing to wait? <input type="text" id="loops" /> <button id="go">Go!</button>
+<div id="waiting" style="display: none;">
+    Calculating...<br />
+<img src="piespinner.gif" />
+</div>
+<div id="result"></div>
+
+<script language="javascript">
+    function CalculatePi(loop)
+    {
+        var n=1;
+        var c = parseInt(loop);
+        console.log(loop);
+        for (var i=0,Pi=0;i<=c;i++) {
+            Pi=Pi+(4/n)-(4/(n+2));
+            n=n+4;
+        }
+        return Pi;
+    }
+    $("#go").click( function(){
+        $("#go").prop("disabled",true);
+        $("#waiting").show();
+        $("#result").text("Answer: pi ~= " + CalculatePi($("#loops").val()));
+        $("#waiting").hide();
+        $("#go").prop("disabled",false);
+    });
+</script>
+</body>
+</html>
+
